@@ -1,0 +1,11 @@
+employee_id,department,role,access_level,work_region,status,allowed_tools
+EMP-00001,fraud_analytics,fraud_analyst,elevated,central,active,"[""get_transaction_summary"", ""review_transaction"", ""open_case""]"
+EMP-00002,customer_support,support_specialist,standard,northwest,active,"[""get_customer_summary"", ""create_support_ticket""]"
+EMP-00003,security_operations,security_analyst,privileged,ural,active,"[""get_security_event"", ""quarantine_session"", ""open_case""]"
+EMP-00004,risk_management,risk_specialist,elevated,ural,active,"[""get_risk_summary"", ""generate_report""]"
+EMP-00005,compliance,compliance_specialist,elevated,central,active,"[""get_compliance_summary"", ""request_approval"", ""generate_report""]"
+EMP-00006,product_management,product_analyst,standard,ural,active,"[""get_aggregate_metrics"", ""generate_report""]"
+EMP-00007,data_analytics,data_analyst,standard,south,active,"[""get_aggregate_metrics"", ""generate_report""]"
+EMP-00008,fraud_analytics,fraud_analyst,elevated,northwest,active,"[""get_transaction_summary"", ""review_transaction"", ""open_case""]"
+EMP-00009,customer_support,support_specialist,standard,south,active,"[""get_customer_summary"", ""create_support_ticket""]"
+EMP-00010,security_operations,security_analyst,privileged,volga,active,"[""get_security_event"", ""quarantine_session"", ""open_case""]"

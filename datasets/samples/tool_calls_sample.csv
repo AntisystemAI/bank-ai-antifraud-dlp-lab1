@@ -1,0 +1,21 @@
+call_id,agent_id,tool_name,requested_scope,approved_scope,records_requested,decision,reason,timestamp
+CALL-00000001,AGT-0001,get_aggregate_metrics,authorized_scope,authorized_scope,27,allow,Tool and scope are allowed,2026-05-09T12:18:05Z
+CALL-00000002,AGT-0002,open_case,authorized_scope,authorized_scope,73,allow,Tool and scope are allowed,2026-04-10T17:20:57Z
+CALL-00000003,AGT-0003,create_support_ticket,authorized_scope,authorized_scope,41,allow,Tool and scope are allowed,2025-08-15T07:33:36Z
+CALL-00000004,AGT-0004,search_documents,authorized_scope,authorized_scope,33,allow,Tool and scope are allowed,2024-01-24T14:04:43Z
+CALL-00000005,AGT-0005,quarantine_session,authorized_scope,authorized_scope,21,allow,Tool and scope are allowed,2025-01-23T06:09:47Z
+CALL-00000006,AGT-0006,get_public_status,authorized_scope,authorized_scope,146,allow_with_masking,Tool and scope are allowed,2025-09-04T23:47:57Z
+CALL-00000007,AGT-0007,generate_report,authorized_scope,authorized_scope,68,allow,Tool and scope are allowed,2025-01-24T03:48:42Z
+CALL-00000008,AGT-0008,open_case,authorized_scope,authorized_scope,3,allow_with_masking,Tool and scope are allowed,2024-07-12T02:28:44Z
+CALL-00000009,AGT-0009,create_support_ticket,authorized_scope,authorized_scope,67,allow,Tool and scope are allowed,2024-10-04T17:33:55Z
+CALL-00000010,AGT-0010,generate_report,authorized_scope,authorized_scope,2,allow,Tool and scope are allowed,2025-12-25T14:07:30Z
+CALL-00000011,AGT-0001,generate_report,authorized_scope,authorized_scope,163,allow,Tool and scope are allowed,2026-05-14T15:51:56Z
+CALL-00000012,AGT-0002,open_case,authorized_scope,authorized_scope,20,allow,Tool and scope are allowed,2025-03-05T10:38:29Z
+CALL-00000013,AGT-0003,create_support_ticket,internal_extended,internal_limited,82,limit,Requested scope was reduced by policy,2025-11-15T04:46:31Z
+CALL-00000014,AGT-0004,generate_report,authorized_scope,authorized_scope,66,allow,Tool and scope are allowed,2026-02-07T20:17:16Z
+CALL-00000015,AGT-0005,get_security_event,authorized_scope,authorized_scope,37,allow,Tool and scope are allowed,2026-08-17T22:49:11Z
+CALL-00000016,AGT-0006,get_public_status,authorized_scope,authorized_scope,167,allow,Tool and scope are allowed,2024-02-29T19:27:01Z
+CALL-00000017,AGT-0007,generate_report,authorized_scope,authorized_scope,148,allow,Tool and scope are allowed,2025-05-07T23:05:07Z
+CALL-00000018,AGT-0008,get_transaction_summary,authorized_scope,authorized_scope,15,allow,Tool and scope are allowed,2025-02-06T10:15:39Z
+CALL-00000019,AGT-0009,send_external_data,restricted_full_export,,6789,block,Tool or scope is outside the agent permission profile,2026-04-19T13:06:50Z
+CALL-00000020,AGT-0010,search_documents,authorized_scope,authorized_scope,89,allow_with_masking,Tool and scope are allowed,2024-06-18T13:54:34Z

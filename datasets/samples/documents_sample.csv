@@ -1,0 +1,11 @@
+document_id,document_type,classification,source_trust,owner_department,contains_untrusted_instruction,contains_synthetic_marker
+DOC-00001,customer_template,restricted,trusted_internal,fraud_analytics,False,False
+DOC-00002,procedure,public,trusted_partner,security_operations,False,False
+DOC-00003,knowledge_article,public,untrusted_external,security_operations,True,True
+DOC-00004,knowledge_article,internal,trusted_internal,compliance,False,False
+DOC-00005,risk_report,public,trusted_internal,data_analytics,False,False
+DOC-00006,knowledge_article,internal,trusted_internal,customer_support,False,True
+DOC-00007,policy,public,trusted_internal,product_management,False,False
+DOC-00008,procedure,internal,trusted_internal,risk_management,False,False
+DOC-00009,knowledge_article,public,untrusted_external,customer_support,True,False
+DOC-00010,risk_report,internal,trusted_internal,compliance,False,False

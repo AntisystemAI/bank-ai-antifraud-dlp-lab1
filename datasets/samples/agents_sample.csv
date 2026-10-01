@@ -1,0 +1,11 @@
+agent_id,agent_type,owner_department,trust_level,permission_profile,allowed_tools,data_access_level,status
+AGT-0001,internal_analytics_agent,data_analytics,high,analytics_read_only,"[""get_aggregate_metrics"", ""generate_report""]",internal,active
+AGT-0002,fraud_review_agent,fraud_analytics,high,fraud_review,"[""get_transaction_summary"", ""review_transaction"", ""open_case""]",confidential,active
+AGT-0003,support_agent,customer_support,medium,support_limited,"[""get_customer_summary"", ""create_support_ticket""]",internal,active
+AGT-0004,rag_agent,compliance,medium,trusted_documents_only,"[""search_documents"", ""generate_report""]",internal,active
+AGT-0005,security_agent,security_operations,high,security_response,"[""get_security_event"", ""quarantine_session"", ""open_case""]",restricted,active
+AGT-0006,external_api_agent,external,low,external_minimal,"[""get_public_status""]",public,active
+AGT-0007,internal_analytics_agent,data_analytics,high,analytics_read_only,"[""get_aggregate_metrics"", ""generate_report""]",internal,active
+AGT-0008,fraud_review_agent,fraud_analytics,high,fraud_review,"[""get_transaction_summary"", ""review_transaction"", ""open_case""]",confidential,active
+AGT-0009,support_agent,customer_support,medium,support_limited,"[""get_customer_summary"", ""create_support_ticket""]",internal,active
+AGT-0010,rag_agent,compliance,medium,trusted_documents_only,"[""search_documents"", ""generate_report""]",internal,active

@@ -1,0 +1,11 @@
+incident_id,incident_type,severity,source_agent,detected_at,affected_records,blocked_layer,containment_action,status
+INC-000001,bulk_data_access,critical,AGT-0004,2025-09-07T00:13:15Z,4840,agent_gateway,quarantine_session,investigating
+INC-000002,suspicious_agent_session,critical,AGT-0007,2026-03-16T23:02:18Z,8282,api_egress,quarantine_session,investigating
+INC-000003,bulk_data_access,critical,AGT-0009,2026-03-07T08:51:51Z,8733,identity_and_access,quarantine_session,resolved
+INC-000004,external_data_transfer,critical,AGT-0010,2024-12-18T12:25:32Z,4728,tool_policy,quarantine_session,contained
+INC-000005,bulk_data_access,critical,AGT-0002,2026-06-21T20:12:36Z,5396,identity_and_access,quarantine_session,investigating
+INC-000006,suspicious_agent_session,high,AGT-0009,2025-12-27T07:33:51Z,8391,decision_engine,quarantine_session,resolved
+INC-000007,repeated_policy_violation,high,AGT-0006,2026-04-29T22:42:37Z,6071,agent_gateway,quarantine_session,contained
+INC-000008,bulk_data_access,high,AGT-0005,2025-05-26T11:00:18Z,4221,tool_policy,quarantine_session,contained
+INC-000009,suspicious_agent_session,high,AGT-0002,2024-10-26T13:47:32Z,2992,identity_and_access,quarantine_session,contained
+INC-000010,unauthorized_tool_call,high,AGT-0010,2025-05-07T11:22:41Z,9151,decision_engine,block_operation,investigating

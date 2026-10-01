@@ -1,0 +1,11 @@
+customer_id,customer_segment,age_group,region,risk_level,kyc_status,registration_date
+CUS-000001,mass,25-34,northwest,low,verified,2026-01-24
+CUS-000002,mass,55-64,volga,low,verified,2024-02-02
+CUS-000003,mass,18-24,ural,low,verified,2024-07-22
+CUS-000004,mass,45-54,ural,medium,pending,2024-10-11
+CUS-000005,business,65_plus,volga,medium,verified,2024-12-14
+CUS-000006,premium,18-24,central,low,verified,2025-01-24
+CUS-000007,mass,18-24,siberia,low,verified,2025-04-15
+CUS-000008,mass,55-64,south,low,pending,2026-04-29
+CUS-000009,mass,25-34,siberia,low,verified,2024-03-12
+CUS-000010,mass,18-24,far_east,low,verified,2024-08-26

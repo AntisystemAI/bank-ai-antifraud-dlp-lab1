@@ -1,0 +1,18 @@
+mode: small
+generator_version: "1.0.0"
+seed: 42
+
+date_range:
+  start: "2024-01-01"
+  end: "2026-09-30"
+
+counts:
+  customers: 50
+  accounts: 80
+  transactions: 1000
+  employees: 20
+  agents: 10
+  agent_events: 500
+  tool_calls: 200
+  documents: 30
+  incidents: 20
