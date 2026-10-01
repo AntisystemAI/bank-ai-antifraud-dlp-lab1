@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: bank-ai-antifraud-dlp-lab
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PERSIST_DECISIONS
+        value: "false"
+
+      - key: SECURITY_POLICY_PATH
+        value: config/security_policy.yml
+
+      - key: PYTHONIOENCODING
+        value: utf-8
+
+      - key: APP_NAME
+        value: Bank AI Antifraud DLP Lab
+
+      - key: APP_VERSION
+        value: 0.3.0
