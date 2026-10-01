@@ -1,85 +1,49 @@
-BEGIN;
-
-CREATE TABLE IF NOT EXISTS public.transactions (
-    transaction_id VARCHAR(50) PRIMARY KEY,
-
-    account_id VARCHAR(50) NOT NULL,
-
-    transaction_time TIMESTAMPTZ NOT NULL,
-
-    amount NUMERIC(15, 2) NOT NULL
-        CHECK (amount > 0),
-
-    currency VARCHAR(3) NOT NULL
-        CHECK (
-            currency IN (
-                'RUB',
-                'USD',
-                'EUR'
-            )
-        ),
-
-    channel VARCHAR(20) NOT NULL
-        CHECK (
-            channel IN (
-                'mobile_app',
-                'web',
-                'atm',
-                'branch',
-                'api'
-            )
-        ),
-
-    merchant_category VARCHAR(50) NOT NULL
-        CHECK (
-            merchant_category IN (
-                'retail',
-                'travel',
-                'transport',
-                'utilities',
-                'telecom',
-                'entertainment',
-                'financial_services',
-                'government',
-                'other'
-            )
-        ),
-
-    recipient_type VARCHAR(20) NOT NULL
-        CHECK (
-            recipient_type IN (
-                'individual',
-                'company',
-                'government',
-                'self_transfer'
-            )
-        ),
-
-    device_id VARCHAR(50) NOT NULL,
-
-    region VARCHAR(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS public.security_decisions (
+    decision_id VARCHAR(80) PRIMARY KEY,
+    event_id VARCHAR(80) NOT NULL UNIQUE,
+    actor_id VARCHAR(80) NOT NULL,
+    agent_id VARCHAR(80),
+    session_id VARCHAR(80) NOT NULL,
+    correlation_id VARCHAR(80) NOT NULL,
 
     risk_score SMALLINT NOT NULL
         CHECK (risk_score BETWEEN 0 AND 100),
 
-    fraud_label BOOLEAN NOT NULL DEFAULT FALSE,
-
-    review_status VARCHAR(30) NOT NULL
+    final_decision VARCHAR(40) NOT NULL
         CHECK (
-            review_status IN (
-                'not_required',
-                'pending',
-                'in_review',
-                'confirmed_legitimate',
-                'confirmed_fraud'
+            final_decision IN (
+                'ALLOW',
+                'ALLOW_WITH_MASKING',
+                'LIMIT',
+                'HUMAN_APPROVAL',
+                'BLOCK'
             )
         ),
 
-    CONSTRAINT fk_transactions_account
-        FOREIGN KEY (account_id)
-        REFERENCES public.accounts(account_id)
-        ON UPDATE CASCADE
-        ON DELETE RESTRICT
+    reason_codes JSONB NOT NULL,
+    layer_results JSONB NOT NULL,
+
+    policy_version VARCHAR(30) NOT NULL,
+    evaluated_at TIMESTAMPTZ NOT NULL,
+    is_synthetic BOOLEAN NOT NULL DEFAULT TRUE,
+
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-COMMIT;
+CREATE INDEX IF NOT EXISTS idx_security_decisions_actor
+    ON public.security_decisions (actor_id);
+
+CREATE INDEX IF NOT EXISTS idx_security_decisions_agent
+    ON public.security_decisions (agent_id);
+
+CREATE INDEX IF NOT EXISTS idx_security_decisions_session
+    ON public.security_decisions (session_id);
+
+CREATE INDEX IF NOT EXISTS idx_security_decisions_correlation
+    ON public.security_decisions (correlation_id);
+
+CREATE INDEX IF NOT EXISTS idx_security_decisions_result
+    ON public.security_decisions (final_decision);
+
+CREATE INDEX IF NOT EXISTS idx_security_decisions_evaluated_at
+    ON public.security_decisions (evaluated_at);

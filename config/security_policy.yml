@@ -1,0 +1,48 @@
+policy_version: "1.0.0"
+
+record_limits:
+  Public: 10000
+  Internal: 5000
+  Confidential: 1000
+  Restricted: 100
+
+internal_destinations:
+  - internal_dashboard
+  - internal_report
+  - antifraud_case
+  - security_monitoring
+
+blocked_tools:
+  - export_restricted_data
+  - change_access_policy
+  - disable_security_control
+
+roles:
+  fraud_analyst:
+    allowed_tools:
+      - aggregate_transactions
+      - view_transaction_summary
+      - create_antifraud_case
+      - prepare_report
+    maximum_classification: Restricted
+
+  reporting_agent:
+    allowed_tools:
+      - aggregate_transactions
+      - prepare_report
+      - generate_statistics
+    maximum_classification: Confidential
+
+  external_support:
+    allowed_tools:
+      - public_knowledge_search
+      - create_support_ticket
+    maximum_classification: Public
+
+  security_agent:
+    allowed_tools:
+      - inspect_agent_event
+      - create_incident
+      - block_session
+      - quarantine_document
+    maximum_classification: Restricted
