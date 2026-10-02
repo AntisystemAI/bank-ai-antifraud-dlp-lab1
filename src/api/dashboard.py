@@ -17,6 +17,7 @@ DASHBOARD_HTML = r"""<!doctype html>
     <!-- Совместимость с прежними проверками HTML-контракта. -->
     <meta name="application-name" content="Bank AI Security Dashboard">
     <meta name="security-architecture" content="Eight Security Layers">
+    <meta name="portfolio-title" content="Bank AI Antifraud DLP Lab">
 
     <style>
         :root {
