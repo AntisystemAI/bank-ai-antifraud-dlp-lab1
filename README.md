@@ -58,3 +58,46 @@ The portfolio case covers:
 - comparative assessment of two fictional banking profiles.
 
 ## MVP Status
+
+**Status:** MVP implemented and publicly deployed as an independent portfolio demonstration.
+
+| Capability | Current result |
+|---|---|
+| Security architecture | Eight-layer policy-controlled security model |
+| Scenario validation | 11/11 scenarios passed |
+| AI-agent governance | Five fictional agent profiles with permission boundaries |
+| Risk evaluation | Risk score, risk level, reason codes and incident identifiers |
+| Security decisions | `ALLOW`, `ALLOW_WITH_MASKING`, `LIMIT`, `HUMAN_APPROVAL`, `BLOCK` |
+| API layer | FastAPI REST API with OpenAPI documentation |
+| Interactive dashboard | Public security dashboard |
+| API documentation | Swagger UI and ReDoc |
+| Deployment | Docker-compatible application deployed on Render |
+| Data model | Synthetic banking transactions and fictional bank profiles |
+| Persistence | Optional PostgreSQL decision and audit storage |
+| Automation | GitHub Actions workflow and automated validation |
+| Repository status | Public GitHub repository with documented architecture and scenarios |
+
+### Public Demo
+
+- [Security Dashboard](https://bank-ai-antifraud-dlp-lab.onrender.com/dashboard)
+- [Swagger API Documentation](https://bank-ai-antifraud-dlp-lab.onrender.com/docs)
+- [ReDoc API Documentation](https://bank-ai-antifraud-dlp-lab.onrender.com/redoc)
+- [Health Check](https://bank-ai-antifraud-dlp-lab.onrender.com/health)
+
+### Demonstrated Controls
+
+The MVP demonstrates policy enforcement for:
+
+- excessive transaction-data requests;
+- cross-department access attempts;
+- repeated policy violations;
+- external data-export attempts;
+- unauthorized tool invocation;
+- untrusted document context;
+- fragmented data collection;
+- restricted fields and classification boundaries;
+- policy-bypass instructions;
+- human approval for high-risk operations;
+- incident creation for critical events.
+
+The public demonstration uses synthetic data and fictional banking profiles. PostgreSQL persistence is implemented as an optional integration and may be disabled in the public demo configuration to keep the deployment portable.
