@@ -56,3 +56,5 @@ The portfolio case covers:
 - testing and acceptance criteria;
 - security and operational metrics;
 - comparative assessment of two fictional banking profiles.
+
+## MVP Status
