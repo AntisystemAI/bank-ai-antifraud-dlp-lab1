@@ -384,6 +384,24 @@ Who initiated the request
 - high-risk requests can require human approval;
 - sensitive fields can be masked;
 - external destinations are evaluated;
+
+
+## Documentation Map
+
+- [Business Problem](docs/01_business_problem.md)
+- [Project Scope](docs/02_project_scope.md)
+- [Architecture](docs/03_architecture.md)
+- [Threat Model](docs/04_threat_model.md)
+- [Trust Boundaries](docs/05_trust_boundaries.md)
+- [Eight Security Layers](docs/06_eight_security_layers.md)
+- [Risk Scoring](docs/07_risk_scoring.md)
+- [Incident Response](docs/08_incident_response.md)
+- [Metrics](docs/09_metrics.md)
+- [Limitations](docs/10_limitations.md)
+- [Agent Permission Matrix](agents/agent_permission_matrix.md)
+- [Testing Results](testing/test_results.md)
+- [Project Roadmap](ROADMAP.md)
+- [Disclaimer](DISCLAIMER.md)
 - repeated violations increase session risk;
 - critical events create incidents;
 - decisions and incidents can be audited;
