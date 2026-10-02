@@ -89,7 +89,7 @@ The portfolio case covers:
 | Automation | GitHub Actions workflow and automated validation |
 | Repository status | Public GitHub repository with documented architecture and scenarios |
 
-### Public Demo
+## Public Demo
 
 - [Security Dashboard](https://bank-ai-antifraud-dlp-lab.onrender.com/dashboard)
 - [Swagger API Documentation](https://bank-ai-antifraud-dlp-lab.onrender.com/docs)
@@ -186,7 +186,7 @@ flowchart LR
 ```
 
 ### Security Decision Model
-MVP Status The engine produces:
+The engine produces:
 
 - final decision;
 - risk score;
@@ -422,6 +422,8 @@ The MVP is considered functionally complete when:
 
 ## Documentation Map
 
+## Documentation Map
+
 ### Business and Architecture
 
 - [Business Problem](docs/01_business_problem.md)
@@ -429,9 +431,6 @@ The MVP is considered functionally complete when:
 - [Architecture](docs/03_architecture.md)
 - [Threat Model](docs/04_threat_model.md)
 - [Trust Boundaries](docs/05_trust_boundaries.md)
-
-### Security Controls
-
 - [Eight Security Layers](docs/06_eight_security_layers.md)
 - [Risk Scoring](docs/07_risk_scoring.md)
 - [Incident Response](docs/08_incident_response.md)
@@ -441,9 +440,16 @@ The MVP is considered functionally complete when:
 ### Agents and Testing
 
 - [Agent Permission Matrix](agents/agent_permission_matrix.md)
+- [AI-Agent Profiles](agents/)
 - [Testing Directory](testing/)
+- [Acceptance Criteria](testing/acceptance_criteria.md)
+- [Control Matrix](testing/control_matrix.md)
+- [Test Plan](testing/test_plan.md)
+- [Test Results](testing/test_results.md)
 
 ### Project Governance
 
 - [Project Roadmap](ROADMAP.md)
 - [Disclaimer](DISCLAIMER.md)
+- [GitHub Actions](https://github.com/AntisystemAI/bank-ai-antifraud-dlp-lab1/actions)
+- [Repository Activity](https://github.com/AntisystemAI/bank-ai-antifraud-dlp-lab1/pulse)
