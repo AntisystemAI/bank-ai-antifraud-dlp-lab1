@@ -102,7 +102,49 @@ The MVP demonstrates policy enforcement for:
 
 The public demonstration uses synthetic data and fictional banking profiles. PostgreSQL persistence is implemented as an optional integration and may be disabled in the public demo configuration to keep the deployment portable.
 
+## Demonstration Results
 
+### Local MVP Validation
+
+The local Docker environment was validated with PostgreSQL persistence enabled.
+
+| Check | Result |
+|---|---|
+| Application health | `status: ok` |
+| Application version | `0.3.0` |
+| Security policy version | `1.0.0` |
+| Loaded agents | 5 |
+| Loaded scenarios | 11 |
+| PostgreSQL persistence | Enabled |
+| Database status | Connected |
+| Scenario execution | 11/11 passed |
+| Critical combined scenario | `BLOCK` |
+| Critical risk score | 100 |
+| Incident creation | Confirmed |
+| Synthetic environment | Enabled |
+
+### Decision Outcomes
+
+The scenario suite validates the following policy outcomes:
+
+| Decision | Demonstrated meaning |
+|---|---|
+| `ALLOW` | Low-risk request is permitted |
+| `ALLOW_WITH_MASKING` | Request is permitted after sensitive fields are masked |
+| `LIMIT` | Request is restricted by volume, scope or frequency |
+| `HUMAN_APPROVAL` | Request requires review by an authorized person |
+| `BLOCK` | Request is denied and may generate a security incident |
+
+The combined incident scenario produced the following result:
+```text
+Scenario: combined_incident
+Expected decision: BLOCK
+Actual decision: BLOCK
+Risk score: 100
+Passed: true
+Incident created: true
+
+```
 ## Architecture
 
 The platform implements a policy-controlled security architecture for AI agents operating on synthetic banking data.
