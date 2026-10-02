@@ -1,48 +1,150 @@
 policy_version: "1.0.0"
 
+risk_thresholds:
+  low_max: 29
+  medium_max: 49
+  high_max: 69
+  critical_min: 70
+
+classification_rank:
+  Public: 0
+  Internal: 1
+  Confidential: 2
+  Restricted: 3
+
 record_limits:
   Public: 10000
   Internal: 5000
   Confidential: 1000
   Restricted: 100
 
-internal_destinations:
-  - internal_dashboard
-  - internal_report
-  - antifraud_case
-  - security_monitoring
+high_risk_tools:
+  - export_masked_report
+  - execute_transaction
+  - suspend_demo_session
+  - create_security_incident
 
-blocked_tools:
+always_forbidden_tools:
   - export_restricted_data
+  - export_raw_transactions
+  - disable_security_controls
+  - reveal_secrets
+  - grant_admin_access
   - change_access_policy
-  - disable_security_control
+  - remove_masking
 
-roles:
-  fraud_analyst:
+restricted_fields:
+  - full_account_number
+  - full_card_number
+  - authentication_secret
+  - investigation_result
+  - unrestricted_customer_profile
+
+prompt_attack_markers:
+  - "ignore previous instructions"
+  - "bypass policy"
+  - "disable security"
+  - "reveal secrets"
+  - "grant admin"
+  - "remove masking"
+
+agents:
+  agent_internal_analyst:
+    name: "Internal Antifraud Analyst Agent"
+    agent_type: "internal"
+    owner_department: "antifraud"
+    trust_level: 85
+    permission_profile: "analyst"
+    maximum_classification: "Confidential"
+    status: "active"
+    allowed_roles:
+      - fraud_analyst
+      - senior_fraud_analyst
     allowed_tools:
       - aggregate_transactions
+      - search_transactions
       - view_transaction_summary
-      - create_antifraud_case
-      - prepare_report
-    maximum_classification: Restricted
+      - read_masked_customer
+      - create_case
+      - request_approval
+    allowed_destinations:
+      - internal_dashboard
+      - antifraud_case
+      - fraud_analysis_workspace
+      - audit_store
 
-  reporting_agent:
+  agent_reporting:
+    name: "Internal Reporting Agent"
+    agent_type: "internal"
+    owner_department: "reporting"
+    trust_level: 75
+    permission_profile: "reporting"
+    maximum_classification: "Confidential"
+    status: "active"
+    allowed_roles:
+      - reporting_specialist
+      - reporting_manager
     allowed_tools:
       - aggregate_transactions
-      - prepare_report
-      - generate_statistics
-    maximum_classification: Confidential
+      - generate_internal_report
+      - export_masked_report
+      - request_approval
+    allowed_destinations:
+      - internal_report_storage
+      - internal_dashboard
+      - audit_store
 
-  external_support:
+  agent_external_support:
+    name: "External Support Agent"
+    agent_type: "external"
+    owner_department: "public_support"
+    trust_level: 45
+    permission_profile: "public_support"
+    maximum_classification: "Public"
+    status: "active"
+    allowed_roles:
+      - external_support
     allowed_tools:
       - public_knowledge_search
       - create_support_ticket
-    maximum_classification: Public
+    allowed_destinations:
+      - public_response
+      - support_ticket
 
-  security_agent:
+  agent_external_rag:
+    name: "External Public RAG Agent"
+    agent_type: "external"
+    owner_department: "public_knowledge"
+    trust_level: 40
+    permission_profile: "public_rag"
+    maximum_classification: "Public"
+    status: "active"
+    allowed_roles:
+      - external_rag
     allowed_tools:
-      - inspect_agent_event
-      - create_incident
-      - block_session
-      - quarantine_document
-    maximum_classification: Restricted
+      - public_document_search
+      - public_knowledge_search
+    allowed_destinations:
+      - public_response
+
+  agent_security:
+    name: "Security Control Agent"
+    agent_type: "internal_security"
+    owner_department: "security_operations"
+    trust_level: 95
+    permission_profile: "security_control"
+    maximum_classification: "Restricted"
+    status: "active"
+    allowed_roles:
+      - security_analyst
+      - security_automation
+    allowed_tools:
+      - inspect_security_event
+      - calculate_risk
+      - create_security_incident
+      - suspend_demo_session
+      - request_approval
+    allowed_destinations:
+      - audit_store
+      - case_management
+      - security_dashboard

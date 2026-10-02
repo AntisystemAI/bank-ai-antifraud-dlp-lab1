@@ -1,51 +1,38 @@
-# Local environment variables and secrets
+# Secrets
 .env
 .env.*
 !.env.example
 
-# Python virtual environments
+# Python environment
 .venv/
 venv/
-env/
-
-# Python cache
 __pycache__/
 *.py[cod]
-*$py.class
 
-# Test and coverage artifacts
+# Tests
 .pytest_cache/
 .coverage
-.coverage.*
 htmlcov/
-coverage.xml
-junit.xml
-
-# Static analysis cache
-.mypy_cache/
-.ruff_cache/
-.pyright/
 
 # Generated datasets
 datasets/generated/*
 !datasets/generated/README.md
+!datasets/generated/.gitkeep
 
-# Logs
+# Runtime files
+reports/runtime/*
+!reports/runtime/.gitkeep
+
+# Logs and local databases
 *.log
-logs/
-
-# Local databases
 *.db
 *.sqlite
 *.sqlite3
 
-# Temporary files
-tmp/
-temp/
-*.tmp
-
-# IDE and operating system files
+# IDE
 .vscode/
 .idea/
+
+# Operating system
 .DS_Store
 Thumbs.db

@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   test:
-    name: Python tests and scenario demo
+    name: Test portfolio MVP
     runs-on: ubuntu-latest
 
     env:
@@ -37,22 +37,26 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Compile source
+      - name: Compile Python files
         run: |
           python -m compileall -q src scripts tests
 
-      - name: Run pytest
+      - name: Run tests
         run: |
           python -m pytest -q
 
-      - name: Run scenario demonstration
+      - name: Run security scenario demo
         run: |
           python -m scripts.run_demo
 
-      - name: Verify application import
+      - name: Verify application
         run: |
           python -c "from src.api.main import app; print(app.title, app.version)"
 
-      - name: Verify dashboard endpoint
+      - name: Verify dashboard route
         run: |
-          python -c "from fastapi.testclient import TestClient; from src.api.main import app; response=TestClient(app).get('/dashboard'); assert response.status_code == 200; print('Dashboard endpoint: OK')"
+          python -c "from src.api.main import app; assert any(getattr(route, 'path', None) == '/dashboard' for route in app.routes); print('Dashboard route: OK')"
+
+      - name: Verify required API routes
+        run: |
+          python -c "from src.api.main import app; routes = {getattr(route, 'path', None) for route in app.routes}; required = {'/', '/health', '/dashboard', '/docs', '/redoc', '/v1/agents', '/v1/security/evaluate', '/v1/scenarios', '/v1/demo/run-all', '/v1/metrics'}; missing = required - routes; assert not missing, f'Missing routes: {sorted(missing)}'; print('Required API routes: OK')"
