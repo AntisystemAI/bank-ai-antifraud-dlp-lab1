@@ -19,3 +19,5 @@ services:
 
       - key: APP_VERSION
         value: 0.3.0
+      - key: PYTHONUTF8
+        value: "1"
