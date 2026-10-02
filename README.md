@@ -422,7 +422,6 @@ The MVP is considered functionally complete when:
 
 ## Documentation Map
 
-## Documentation Map
 
 ### Business and Architecture
 
