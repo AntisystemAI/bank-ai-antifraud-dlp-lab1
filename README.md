@@ -101,3 +101,31 @@ The MVP demonstrates policy enforcement for:
 - incident creation for critical events.
 
 The public demonstration uses synthetic data and fictional banking profiles. PostgreSQL persistence is implemented as an optional integration and may be disabled in the public demo configuration to keep the deployment portable.
+
+
+## Architecture
+
+The platform implements a policy-controlled security architecture for AI agents operating on synthetic banking data.
+
+The control model separates business intent, agent identity, data access, tool invocation, outbound transfer, risk evaluation, auditability and incident response.
+
+### End-to-End Control Flow
+```mermaid
+flowchart LR
+    A[Business Request] --&gt; B[AI Agent]
+    B --&gt; C[Identity and Trust]
+    C --&gt; D[Input and Context Control]
+    D --&gt; E[Tool Access Control]
+    E --&gt; F[Data Access Control]
+    F --&gt; G[Behavioral Risk Evaluation]
+    G --&gt; H[DLP and Masking]
+    H --&gt; I[Egress Control]
+    I --&gt; J[Decision Engine]
+    J --&gt; K{Final Decision}
+    K --&gt;|ALLOW| L[Execute Request]
+    K --&gt;|ALLOW_WITH_MASKING| M[Execute Sanitized Request]
+    K --&gt;|LIMIT| N[Execute Within Limits]
+    K --&gt;|HUMAN_APPROVAL| O[Human Review]
+    K --&gt;|BLOCK| P[Block and Create Incident]
+    J --&gt; Q[Audit Record]
+    P --&gt; R[Containment and Response]
