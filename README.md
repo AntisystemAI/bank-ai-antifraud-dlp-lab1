@@ -129,3 +129,94 @@ flowchart LR
     K --&gt;|BLOCK| P[Block and Create Incident]
     J --&gt; Q[Audit Record]
     P --&gt; R[Containment and Response]
+
+### Security Decision Model
+
+Every request is evaluated through the complete control chain. The engine produces:
+
+- final decision;
+- risk score;
+- risk level;
+- reason codes;
+- layer-by-layer results;
+- policy version;
+- audit metadata;
+- incident identifier when required.
+
+The supported decision types are:
+
+| Decision | Meaning | Typical control outcome |
+| --- | --- | --- |
+| `ALLOW` | Request is permitted | Low-risk request within the approved scope |
+| `ALLOW_WITH_MASKING` | Request is permitted after sanitization | Sensitive fields are masked before release |
+| `LIMIT` | Request is permitted with restrictions | Data volume, scope or frequency is reduced |
+| `HUMAN_APPROVAL` | Request requires a human decision | Context is untrusted or risk is elevated |
+| `BLOCK` | Request is denied | Policy violation, unauthorized tool or unsafe destination |
+
+### Eight Security Layers
+
+| Layer | Control objective | Example control |
+| --- | --- | --- |
+| 1. Identity and Trust | Establish whether the actor and agent are trusted | Agent profile, owner, origin and trust state |
+| 2. Input and Context Control | Detect unsafe or manipulated instructions | Untrusted documents and policy-bypass detection |
+| 3. Tool Access Control | Restrict which tools an agent may invoke | Tool allowlist and high-risk tool approval |
+| 4. Data Access Control | Enforce least privilege over data | Role, department, classification and scope checks |
+| 5. Behavioral Risk | Detect suspicious or abnormal behavior | Repeated violations, excessive volume and fragmentation |
+| 6. DLP and Masking | Prevent exposure of sensitive fields | Restricted-field detection and masking |
+| 7. Egress Control | Control where data may be sent | External destination and export restrictions |
+| 8. Monitoring and Response | Make decisions observable and actionable | Audit records, incidents and containment actions |
+
+### Trust Boundaries
+
+The architecture distinguishes between:
+
+- internal and external agents;
+- trusted and untrusted context;
+- approved and unapproved tools;
+- authorized and unauthorized departments;
+- synthetic and sensitive data classifications;
+- internal and external destinations;
+- normal and anomalous session behavior.
+
+A request may pass one control and still be denied by a later layer. For example, an authenticated internal agent may still be blocked when it requests data from another department or attempts to export sensitive content externally.
+
+### Control Plane and Data Plane
+
+The **control plane** contains:
+
+- agent profiles;
+- access policies;
+- data classifications;
+- tool permissions;
+- risk thresholds;
+- approval rules;
+- incident response actions;
+- audit and metrics definitions.
+
+The **data plane** contains:
+
+- synthetic customers;
+- accounts;
+- transactions;
+- employees;
+- documents;
+- agent events;
+- tool calls;
+- security decisions;
+- security incidents.
+
+This separation allows security policies to be reviewed and changed independently from the synthetic business data used by the demonstration.
+
+### Reference Components
+
+| Component | Responsibility |
+| --- | --- |
+| FastAPI API | Exposes health, agent, scenario, evaluation, audit, incident and metrics endpoints |
+| Security Engine | Evaluates requests through the eight security layers |
+| Policy Loader | Loads versioned security policies and classification rules |
+| Scenario Catalog | Provides normal, suspicious and incident-oriented test cases |
+| Decision Repository | Persists security decisions and incidents when PostgreSQL mode is enabled |
+| Dashboard | Presents health, agents, scenarios, metrics and runtime results |
+| PostgreSQL | Optional persistence layer for decisions, incidents and audit data |
+| GitHub Actions | Validates syntax, tests, scenarios and required API routes |
+| Docker | Packages the application for reproducible deployment |
