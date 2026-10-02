@@ -22,7 +22,6 @@ flowchart LR
     D --&gt;|BLOCK| B[Block and Create Incident]
 
     D --&gt; Q[Audit and Metrics]
-
 ```
 ## Reference Components
 | Component | Responsibility |
@@ -40,7 +39,7 @@ flowchart LR
 | GitHub Actions | Runs automated validation |
 | Docker | Provides reproducible packaging and deployment |
 
-##Request Processing
+## Request Processing
 A request follows these logical stages:
 Receive the business request and agent context.
 Identify the agent, owner, role and trust state.
