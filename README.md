@@ -222,4 +222,129 @@ This separation allows security policies to be reviewed and changed independentl
 | Docker | Packages the application for reproducible deployment |
 
 
+## Threat Model and Governance
 
+The project is designed around a governance model for AI-enabled workflows that process sensitive transaction data.
+
+The objective is not only to block individual requests, but to establish accountable, measurable and reviewable controls for the complete agent lifecycle.
+
+### Protected Assets
+
+The security model protects:
+
+- synthetic transaction records;
+- customer and account identifiers;
+- restricted transaction fields;
+- employee and department information;
+- analytical reports;
+- internal tools and datasets;
+- security decisions;
+- audit records;
+- incident evidence;
+- temporary approvals and session state.
+
+### Threat Scenarios
+
+| Threat | Business risk | Primary controls |
+|---|---|---|
+| Excessive transaction-data request | Unnecessary exposure of sensitive records | Data-volume limits, masking and approval |
+| Cross-department access attempt | Unauthorized access to another business area | Department scope and authorization checks |
+| Repeated policy violations | Escalation from isolated misuse to coordinated abuse | Session risk, containment and incident creation |
+| External data-export attempt | Sensitive information reaches an untrusted destination | Egress control, DLP and blocking |
+| Unauthorized tool invocation | Agent performs an operation outside its permission scope | Tool allowlist and policy enforcement |
+| Untrusted document context | External instructions influence a protected workflow | Context validation and human approval |
+| Fragmented data collection | Small requests are combined to bypass volume controls | Behavioral analysis and repeated-violation detection |
+| Restricted-field access | Classified fields are exposed without authorization | Classification checks and masking |
+| Policy-bypass instruction | Agent attempts to override security controls | Instruction analysis and blocking |
+
+### Governance Responsibilities
+
+| Role | Responsibility |
+|---|---|
+| Business owner | Defines the legitimate business purpose and acceptable risk |
+| Data owner | Approves data classification, access scope and retention requirements |
+| Security owner | Maintains control objectives, risk thresholds and response rules |
+| AI-agent owner | Ensures that the agent operates only within its approved purpose |
+| Human approver | Reviews high-risk requests before execution |
+| Incident analyst | Investigates blocked events and reconstructs the evidence chain |
+| Platform owner | Maintains API, deployment, availability and technical controls |
+| Auditor or reviewer | Verifies that decisions are explainable, traceable and policy-consistent |
+
+### Risk Acceptance Model
+
+A request must not be approved only because the agent is authenticated.
+
+The final decision must consider:
+
+- the identity and trust level of the agent;
+- the business purpose of the request;
+- the requested tool;
+- the data classification;
+- the requested volume;
+- the destination;
+- the current session history;
+- previous policy violations;
+- the availability of masking;
+- the need for human approval.
+
+High-risk activity must result in one of the following outcomes:
+
+| Outcome | Governance meaning |
+|---|---|
+| Allow | The request is within the approved business and security scope |
+| Allow with masking | The business purpose is valid, but sensitive fields must be protected |
+| Limit | The request is valid only within a reduced volume or scope |
+| Human approval | A responsible person must review the request before execution |
+| Block | The request violates policy or exceeds the trust boundary |
+| Contain | The session or agent requires additional investigation and restriction |
+
+### Control Effectiveness Metrics
+
+The portfolio evaluates control effectiveness through measurable indicators:
+
+| Metric | Purpose |
+|---|---|
+| Unauthorized request block rate | Measures whether prohibited activity is stopped |
+| Human approval rate | Shows how often elevated-risk activity requires review |
+| Sensitive-data masking rate | Measures protection of restricted fields |
+| Repeated-violation detection rate | Measures behavioral monitoring effectiveness |
+| External-export prevention rate | Measures egress-control effectiveness |
+| Incident creation accuracy | Measures whether critical events generate incidents |
+| Audit completeness | Measures whether the decision chain can be reconstructed |
+| False-positive review rate | Identifies controls that may require policy tuning |
+| Mean time to contain | Measures response speed after critical detection |
+| Policy coverage | Shows which threat scenarios are represented by executable tests |
+
+### Evidence and Auditability
+
+For every security decision, the system should make it possible to reconstruct:
+```text
+Who initiated the request
+→ When the request occurred
+→ Which agent processed it
+→ Which tool was requested
+→ Which data was requested
+→ How many records were involved
+→ Where the result was intended to go
+→ Which security layer made the decision
+→ Which policy rules were triggered
+→ Whether data was masked
+→ Whether an incident was created
+→ What happened after the decision
+
+```
+### Acceptance Criteria
+
+- The MVP is considered functionally complete when:
+- all eight security layers are represented in the architecture;
+- every critical scenario has an expected decision;
+- blocked requests return explainable reason codes;
+- high-risk requests can require human approval;
+- sensitive fields can be masked;
+- external destinations are evaluated;
+- repeated violations increase session risk;
+- critical events create incidents;
+- decisions and incidents can be audited;
+- the complete decision chain can be reconstructed;
+- the public demonstration uses synthetic data only;
+- deployment can run without a mandatory banking-system integration.
