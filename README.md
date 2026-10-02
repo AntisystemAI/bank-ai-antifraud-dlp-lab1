@@ -8,6 +8,18 @@ The project combines antifraud analytics, data-loss prevention, identity and acc
 
 This portfolio case connects business risk, operating model, security controls, measurable outcomes and implementation governance.
 
+## Quick Navigation
+
+- [MVP Status](#mvp-status)
+- [Demonstration Results](#demonstration-results)
+- [Architecture](#architecture)
+- [Eight Security Layers](#eight-security-layers)
+- [Threat Model and Governance](#threat-model-and-governance)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Documentation Map](#documentation-map)
+- [Public Dashboard](https://bank-ai-antifraud-dlp-lab.onrender.com/dashboard)
+- [Swagger API](https://bank-ai-antifraud-dlp-lab.onrender.com/docs)
+
 ## Leadership Scope
 
 The project demonstrates capabilities in:
@@ -174,7 +186,7 @@ flowchart LR
 ```
 
 ### Security Decision Model
-Every request is evaluated through the complete control chain. The engine produces:
+MVP Status The engine produces:
 
 - final decision;
 - risk score;
@@ -194,6 +206,22 @@ The supported decision types are:
 | `LIMIT` | Request is permitted with restrictions | Data volume, scope or frequency is reduced |
 | `HUMAN_APPROVAL` | Request requires a human decision | Context is untrusted or risk is elevated |
 | `BLOCK` | Request is denied | Policy violation, unauthorized tool or unsafe destination |
+
+### Implementation Status
+
+| Area | Status |
+|---|---|
+| Eight-layer architecture | Implemented and documented |
+| Agent profiles | Implemented |
+| Scenario evaluation | Implemented |
+| Risk scoring | Implemented |
+| DLP and masking | Implemented |
+| Egress control | Implemented |
+| Incident creation | Implemented |
+| PostgreSQL persistence | Optional integration |
+| Public dashboard | Deployed |
+| Real banking integration | Out of scope |
+| Production readiness | Not claimed |
 
 ### Eight Security Layers
 
@@ -375,36 +403,47 @@ Who initiated the request
 → What happened after the decision
 
 ```
-### Acceptance Criteria
+## Acceptance Criteria
 
-- The MVP is considered functionally complete when:
+The MVP is considered functionally complete when:
+
 - all eight security layers are represented in the architecture;
 - every critical scenario has an expected decision;
 - blocked requests return explainable reason codes;
 - high-risk requests can require human approval;
 - sensitive fields can be masked;
 - external destinations are evaluated;
-
-
-## Documentation Map
-
-- [Business Problem](docs/01_business_problem.md)
-- [Project Scope](docs/02_project_scope.md)
-- [Architecture](docs/03_architecture.md)
-- [Threat Model](docs/04_threat_model.md)
-- [Trust Boundaries](docs/05_trust_boundaries.md)
-- [Eight Security Layers](docs/06_eight_security_layers.md)
-- [Risk Scoring](docs/07_risk_scoring.md)
-- [Incident Response](docs/08_incident_response.md)
-- [Metrics](docs/09_metrics.md)
-- [Limitations](docs/10_limitations.md)
-- [Agent Permission Matrix](agents/agent_permission_matrix.md)
-- [Testing Results](testing/test_results.md)
-- [Project Roadmap](ROADMAP.md)
-- [Disclaimer](DISCLAIMER.md)
 - repeated violations increase session risk;
 - critical events create incidents;
 - decisions and incidents can be audited;
 - the complete decision chain can be reconstructed;
 - the public demonstration uses synthetic data only;
 - deployment can run without a mandatory banking-system integration.
+
+## Documentation Map
+
+### Business and Architecture
+
+- [Business Problem](docs/01_business_problem.md)
+- [Project Scope](docs/02_project_scope.md)
+- [Architecture](docs/03_architecture.md)
+- [Threat Model](docs/04_threat_model.md)
+- [Trust Boundaries](docs/05_trust_boundaries.md)
+
+### Security Controls
+
+- [Eight Security Layers](docs/06_eight_security_layers.md)
+- [Risk Scoring](docs/07_risk_scoring.md)
+- [Incident Response](docs/08_incident_response.md)
+- [Metrics](docs/09_metrics.md)
+- [Limitations](docs/10_limitations.md)
+
+### Agents and Testing
+
+- [Agent Permission Matrix](agents/agent_permission_matrix.md)
+- [Testing Directory](testing/)
+
+### Project Governance
+
+- [Project Roadmap](ROADMAP.md)
+- [Disclaimer](DISCLAIMER.md)
