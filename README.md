@@ -129,9 +129,9 @@ flowchart LR
     K --&gt;|BLOCK| P[Block and Create Incident]
     J --&gt; Q[Audit Record]
     P --&gt; R[Containment and Response]
+```
 
 ### Security Decision Model
-
 Every request is evaluated through the complete control chain. The engine produces:
 
 - final decision;
@@ -220,3 +220,6 @@ This separation allows security policies to be reviewed and changed independentl
 | PostgreSQL | Optional persistence layer for decisions, incidents and audit data |
 | GitHub Actions | Validates syntax, tests, scenarios and required API routes |
 | Docker | Packages the application for reproducible deployment |
+
+
+
